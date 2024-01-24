@@ -1,0 +1,21 @@
+app_name: redmine
+app_image: redmine
+app_image_version: 4
+app_ports:
+  - "{{ application_public_port }}:3000"
+
+db_username: "{{ secret_db_user }}"
+db_password: "{{ secret_db_password }}"
+db_host: "{{ secret_db_address }}"
+db_port: 6432
+db_database: "{{ secret_db_name }}"
+
+datadog_api_key: "{{ secret_datadog_api_key }}"
+datadog_site: "ap1.datadoghq.com"
+datadog_apm_instrumentation_enabled: "all"
+datadog_checks:
+  http_check:
+    init_config:
+    instances:
+      - name: Checking local connection to redmine
+        url: http://127.0.0.1:{{ application_public_port }}

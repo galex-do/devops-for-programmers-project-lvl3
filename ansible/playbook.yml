@@ -1,0 +1,18 @@
+- hosts: webservers
+  tasks:
+    - name: apt update
+      apt:
+        update_cache: yes
+      become: yes
+      tags: setup
+
+- hosts: webservers
+  roles:
+    - role: geerlingguy.pip
+      tags: setup
+      become: yes
+    - role: app
+      tags: deploy
+    - role: datadog.datadog
+      tags: datadog
+      become: yes

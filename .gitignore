@@ -1,0 +1,13 @@
+*.decrypted
+terraform-generated.yml
+.vaultpass
+ssh-config-hexlet3
+*.gpg
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Local .terraform directories
+**/.terraform/*
+**.terraform.*

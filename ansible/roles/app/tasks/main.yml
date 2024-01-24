@@ -1,0 +1,14 @@
+- name: lay env file on remote hosts
+  template:
+    src: .envfile.j2
+    dest: "~/.env"
+    mode: 0644
+
+- name: Create application container
+  community.docker.docker_container:
+    name: "{{ app_name }}"
+    image: "{{ app_image }}:{{ app_image_version }}"
+    restart: yes
+    restart_policy: always
+    published_ports: "{{ app_ports }}"
+    env_file: "~/.env"
