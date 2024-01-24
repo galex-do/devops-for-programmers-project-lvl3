@@ -76,15 +76,15 @@ module "sshfile" {
 module "ansible_vars" {
   source = "./modules/local/vars"
   values = {
-    secret_db_name     = data.sops_file.secrets.data["db_name"]
-    secret_db_user     = data.sops_file.secrets.data["db_user"]
-    secret_db_password = data.sops_file.secrets.data["db_password"]
-    secret_db_address  = module.db.output_cluster_fqdn
-    secret_datadog_api_key = data.sops_file.secrets.data["datadog_api_key"]
-    secret_datadog_app_key = data.sops_file.secrets.data["datadog_app_key"]
-    secret_datadog_api_url = data.sops_file.secrets.data["datadog_api_url"]
+    secret_db_name          = data.sops_file.secrets.data["db_name"]
+    secret_db_user          = data.sops_file.secrets.data["db_user"]
+    secret_db_password      = data.sops_file.secrets.data["db_password"]
+    secret_db_address       = module.db.output_cluster_fqdn
+    secret_datadog_api_key  = data.sops_file.secrets.data["datadog_api_key"]
+    secret_datadog_app_key  = data.sops_file.secrets.data["datadog_app_key"]
+    secret_datadog_api_url  = data.sops_file.secrets.data["datadog_api_url"]
     application_public_port = var.app.service_port
-    application_fqdn = trimsuffix(var.dns-public.records[0], ".")
+    application_fqdn        = trimsuffix(var.dns-public.records[0], ".")
   }
   config_relative_path = "../ansible/group_vars/all"
 }
